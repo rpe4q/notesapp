@@ -1,0 +1,183 @@
+@import url("../fonts/fonts.css");
+.rmButton, .chButton, .card, body .inpt #text, dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
+  transition: ease-out 192ms;
+}
+.rmButton:hover, .chButton:hover, .card:hover, body .inpt #text:hover, dialog .oB .okBtn:hover, body .inpt .addBtn #expButton:hover, body .inpt .addBtn .file-input:hover, body .inpt .addBtn #addButton:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
+  transition: ease-in 192ms;
+}
+
+.rmButton:active, .chButton:active, body .inpt #text:active, dialog .oB .okBtn:active, body .inpt .addBtn #expButton:active, body .inpt .addBtn .file-input:active, body .inpt .addBtn #addButton:active {
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
+  transition: ease-in 192ms;
+}
+
+dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
+  width: 96px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+body, .apptitle, .inpt, .addBtn {
+  display: flex;
+}
+
+body {
+  font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, "Noto Color Emoji";
+  display: flex;
+  background: #fafafa;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+body .apptitle {
+  justify-content: center;
+  font-family: "Lato Bold";
+  font-size: 56px;
+  width: 90%;
+}
+body .inpt {
+  flex-direction: column;
+}
+body .inpt .addBtn {
+  justify-content: center;
+}
+body .inpt .addBtn #addButton, body .inpt .addBtn #impButton, body .inpt .addBtn #expButton {
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+}
+body .inpt .addBtn #addButton {
+  background: linear-gradient(#00bb00, green);
+  color: white;
+}
+body .inpt .addBtn .file-input {
+  background: linear-gradient(cornflowerblue, blue);
+  color: transparent;
+}
+body .inpt .addBtn .file-input::file-selector-button {
+  background: transparent;
+  color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+body .inpt .addBtn .file-input::before {
+  display: grid;
+  place-items: center;
+  min-height: 1.9em;
+  content: "Import";
+  color: white;
+}
+body .inpt .addBtn #expButton {
+  background: linear-gradient(yellow, orange);
+  color: black;
+}
+
+.card {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 64px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2509803922);
+}
+
+.rmButton, .chButton {
+  position: absolute;
+  display: block;
+  align-self: end;
+  border-radius: 1em;
+  border: none;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rmButton {
+  padding: 4px 9.25px;
+  background: linear-gradient(red, #cc0000);
+  color: white;
+}
+
+.chButton {
+  margin-right: 2em;
+  padding: 2.75px 5.5px;
+  background: linear-gradient(cornflowerblue, blue);
+  color: white;
+}
+
+dialog {
+  border: none;
+  border-radius: 4px;
+  animation: danimin 192ms;
+}
+dialog::backdrop {
+  animation: banimin 192ms;
+}
+dialog #cd {
+  font-family: "Share Tech Mono";
+  font-size: large;
+}
+dialog .oB {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+dialog .oB .okBtn {
+  background: linear-gradient(#00bb00, green);
+  color: white;
+}
+
+#howto {
+  align-self: center;
+  text-decoration: underline;
+  color: darkblue;
+  transition: ease-out 192ms;
+}
+#howto:hover {
+  transition: ease-out 192ms;
+  color: blue;
+  text-decoration-color: transparent;
+  cursor: pointer;
+}
+
+@keyframes danimin {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes banimin {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes banimout {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}/*# sourceMappingURL=index.css.map */

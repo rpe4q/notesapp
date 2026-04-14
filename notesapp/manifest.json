@@ -1,0 +1,30 @@
+{
+    "name": "Notes",
+    "short_name": "Notes",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "./",
+    "background_color": "#ffffff",
+    "theme_color": "#ffd800",
+    "icons": [
+        {
+            "src": "img/ico.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "img/sc_mobile.jpg",
+            "type": "image/png",
+            "sizes": "575x876",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "img/sc_pc.png",
+            "type": "image/png",
+            "sizes": "1920x1080",
+            "form_factor": "wide"
+        }
+    ]
+}

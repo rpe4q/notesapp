@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes App</title>
+        <link rel="stylesheet" href="sass/index.css">
+        <link rel="shortcut icon" href="img/ico.png" type="image/png">
+        <!-- https://www.freepik.com/icon/notes_5994744 - Icon by kumakamu -->
+        <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
+    </head>
+    <body>
+        <h1 class="apptitle">Notes App</h1>
+        <p id="howto" type="button" onclick="window.htDialog.showModal()">
+            how to use it?
+        </p>
+        <dialog id="htDialog">
+            you can write something as usual, 
+            but for enhanced functionality you need this flags<br>
+            <br>
+            <code id="cd">h1</code> - title<br>
+            <code id="cd">br</code> - next row<br>
+            <br>
+            and these flags should be in these brackets like these: <code id="cd"><></code>
+            <br>
+            for more info you an find in <a href="https://w3schools.com/html" 
+                target="_blank" rel="noopener">
+                this guide
+            </a>
+            <p class="oB">
+                <button class="okBtn" onclick="window.htDialog.close()">
+                    OK
+                </button>
+            </p>
+        </dialog>
+        <div class="inpt">
+            <textarea id="text" placeholder="any thoughts?" cols="40" rows="3">
+            </textarea>
+            <p class="addBtn">
+                <button id="addButton">Add</button>
+                <input type="file" accept=".json"
+                    id="impButton" class="file-input">
+                <button id="expButton">Export</button>
+            </p>
+        </div>
+        <div class="cards"></div>
+        <script type="module" src="app.js"></script>
+        <script type="module" src="FileSaver.js"></script>
+    </body>
+</html>

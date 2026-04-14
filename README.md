@@ -10,3 +10,6 @@
 ### Tools
 - [VS Code](https://code.visualstudio.com)
 - [Alice AI](https://a.ya.ru)
+
+### Notes
+for debugging you need open with Live/Five Server

@@ -6,7 +6,6 @@ const rmButton = document.querySelector('.rmButton')
 const impButton = document.querySelector('#impButton')
 const expButton = document.querySelector('#expButton')
 const txtContent = document.querySelector('#text')
-const cardToRemove = document.querySelector('.card');
 
 async function loadGreeting() {
     try {
@@ -154,7 +153,6 @@ function expNote() {
 }
 
 function editNote(event) {
-    
     let eDiag = document.createElement('dialog');
     eDiag.className = 'editDiag';
     eDiag.innerHTML = `

@@ -12,7 +12,7 @@
 - [Alice AI](https://a.ya.ru)
 - [Perplexity](https://perplexity.ai)
 
-### Tools
+### Resources
 - [Ya.Maps](https://maps.ya.ru)
 
 ### Notes

@@ -6,6 +6,7 @@ const rmButton = document.querySelector('.rmButton')
 const impButton = document.querySelector('#impButton')
 const expButton = document.querySelector('#expButton')
 const txtContent = document.querySelector('#text')
+const cardToRemove = document.querySelector('.card');
 
 async function loadGreeting() {
     try {
@@ -24,9 +25,16 @@ async function loadGreeting() {
         let greetCard = document.createElement('div')
         greetCard.className = "card"
         greetCard.innerHTML += `<button class="rmButton">x</button>
-                <button class="chgButton">✏</button>
                 <h1>${data.notes.title}</h1>
                 ${data.notes.text}`;
+        
+        const chgButton = document.createElement('button');
+        chgButton.className = 'chgButton';
+        chgButton.textContent = '✏';
+
+        greetCard.appendChild(chgButton);
+        
+        chgButton.addEventListener('click', editNote);
         document.body.appendChild(greetCard);
     } catch (error) {
         console.error("Ошибка:", error);
@@ -66,22 +74,23 @@ function addNote() {
     rmButton.className = 'rmButton';
     rmButton.textContent = 'x';
     
-    /*
-    */
     const chgButton = document.createElement('button');
     chgButton.className = 'chgButton';
     chgButton.textContent = '✏';
-
+    
     card.appendChild(chgButton);
     card.appendChild(rmButton);
     card.appendChild(contentDiv);
-
+    
     chgButton.addEventListener('click', editNote);
     document.body.appendChild(card);
     cardAnim(0, 1);
 }
 
-function changedNote(stuff) {
+function changedNote(stuff, cardToRemove = null) {
+    if (cardToRemove) {
+        cardToRemove.remove();
+    }
     let card = document.createElement('div');
     card.className = 'card';
     
@@ -92,21 +101,17 @@ function changedNote(stuff) {
     const rmButton = document.createElement('button');
     rmButton.className = 'rmButton';
     rmButton.textContent = 'x';
-
-    /*
-    */
+    
     const chgButton = document.createElement('button');
     chgButton.className = 'chgButton';
     chgButton.textContent = '✏';
-
-
+    
     card.appendChild(chgButton);
     card.appendChild(rmButton);
     card.appendChild(contentDiv);
-
-    chgButton.addEventListener('click', editNote);
+    
+    chgButton.addEventListener('click', editNote(card));
     document.body.appendChild(card);
-    //card.remove.closest('.card');
     cardAnim(0, 1);
 }
 
@@ -121,8 +126,7 @@ function impNote(noteText) {
     const rmButton = document.createElement('button');
     rmButton.className = 'rmButton';
     rmButton.textContent = 'x';
-    /*
-    */
+    
     const chgButton = document.createElement('button');
     chgButton.className = 'chgButton';
     chgButton.textContent = '✏';
@@ -149,17 +153,10 @@ function expNote() {
     saveAs(blob, "export.json");
 }
 
-const chgButton = document.querySelector('.chgButton')
-
-function editNote() {
-    if (!chgButton) {
-        console.error('Кнопка с классом .chgButton не найдена');
-        return;
-    }
-
+function editNote(event) {
+    
     let eDiag = document.createElement('dialog');
     eDiag.className = 'editDiag';
-
     eDiag.innerHTML = `
         <h3>Редактирование заметки</h3>
         <textarea id="editText" placeholder="Введите текст заметки"></textarea>
@@ -170,22 +167,22 @@ function editNote() {
     `;
 
     document.body.appendChild(eDiag);
-
+    
     eDiag.showModal();
-
+    
     const saveBtn = eDiag.querySelector('#saveBtn');
     const cancelBtn = eDiag.querySelector('#cancelBtn');
-
+    
     saveBtn.addEventListener('click', () => {
-        //console.log('Заметка сохранена:', document.getElementById('editText').value);
-        changedNote(document.getElementById('editText').value);
+        changedNote(document.getElementById('editText').value,
+            event.target.closest('.card'));
         eDiag.close();
-        document.body.removeChild(eDiag);
+        eDiag.remove();
     });
 
     cancelBtn.addEventListener('click', () => {
         eDiag.close();
-        document.body.removeChild(eDiag);
+        eDiag.remove();
     });
 }
 

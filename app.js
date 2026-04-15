@@ -5,6 +5,7 @@ const addButton = document.querySelector('#addButton')
 const rmButton = document.querySelector('.rmButton')
 const impButton = document.querySelector('#impButton')
 const expButton = document.querySelector('#expButton')
+const addPlBtn = document.querySelector('[name="addPl"]')
 const txtContent = document.querySelector('#text')
 
 async function loadGreeting() {
@@ -184,7 +185,71 @@ function editNote(event) {
     });
 }
 
+function addPlaceFx() {
+    let eDiag = document.createElement('dialog');
+    eDiag.className = 'editDiag';
+    eDiag.innerHTML = `
+        <form>
+            <h3>Добавление геолокации</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" id="laField"
+                                placeholder="Введите ширину">
+                        </td>
+                        <td>
+                        <input type="text" id="loField"
+                            placeholder="Введите долготу">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fwField"
+                                placeholder="Ширина виджета">
+                        </td>
+                        <td>
+                            <input type="text" id="fhField"
+                                placeholder="Длина виджета">
+                        </td>
+                    </tr>
+                <table>
+            <p>
+                <div class="dialog-buttons">
+                    <button type="button" id="pOkBtn">ОК</button>
+                    <button type="button" id="pCancelBtn">Отмена</button>
+                </div>
+            </p>
+        </form>
+    `;
+
+    document.body.appendChild(eDiag);
+    eDiag.showModal();
+
+    const loP = document.querySelector('#loField')
+    const laP = document.querySelector('#laField')
+    const fwP = document.querySelector('#fwField')
+    const fhP = document.querySelector('#fhField')
+
+    const pOkBtn = eDiag.querySelector('#pOkBtn');
+    const pCancelBtn = eDiag.querySelector('#pCancelBtn');
+
+    pOkBtn.addEventListener('click', () => {
+        txtContent.value += `<iframe src="https://yandex.com/map-widget/v1/?ll=${loP.value}%2C${laP.value}" 
+                width="${fwP.value}" height="${fhP.value}" 
+                frameborder="1" allowfullscreen="true" style="position:relative;">
+            </iframe>`
+        eDiag.close();
+        eDiag.remove();
+    });
+
+    pCancelBtn.addEventListener('click', () => {
+        eDiag.close();
+        eDiag.remove();
+    });
+}
+
 addButton.addEventListener('click', () => { addNote(); })
+addPlBtn.addEventListener('click', addPlaceFx)
 expButton.addEventListener('click', () => { expNote(); })
 impButton.addEventListener('change', (event) => {
     const file = event.target.files[0];

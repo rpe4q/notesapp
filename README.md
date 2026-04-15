@@ -12,5 +12,8 @@
 - [Alice AI](https://a.ya.ru)
 - [Perplexity](https://perplexity.ai)
 
+### Tools
+- [Ya.Maps](https://maps.ya.ru)
+
 ### Notes
 for debugging you need open with Live/Five Server

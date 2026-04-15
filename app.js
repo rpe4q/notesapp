@@ -3,7 +3,6 @@ import { saveAs } from './FileSaver.js';
 const cards = document.querySelector('.cards')
 const addButton = document.querySelector('#addButton')
 const rmButton = document.querySelector('.rmButton')
-const chgButton = document.querySelector('.chButton')
 const impButton = document.querySelector('#impButton')
 const expButton = document.querySelector('#expButton')
 const txtContent = document.querySelector('#text')
@@ -25,11 +24,10 @@ async function loadGreeting() {
         let greetCard = document.createElement('div')
         greetCard.className = "card"
         greetCard.innerHTML += `<button class="rmButton">x</button>
-                
+                <button class="chgButton">✏</button>
                 <h1>${data.notes.title}</h1>
                 ${data.notes.text}`;
         document.body.appendChild(greetCard);
-        //<button class="chButton">✏</button>
     } catch (error) {
         console.error("Ошибка:", error);
         cards.innerHTML = `<p style="color:red;">Ошибка при загрузке данных</p>`;
@@ -69,16 +67,46 @@ function addNote() {
     rmButton.textContent = 'x';
     
     /*
-    const chButton = document.createElement('button');
-    chButton.className = 'chButton';
-    chButton.textContent = '✏';
-
-    card.appendChild(chButton);
     */
+    const chgButton = document.createElement('button');
+    chgButton.className = 'chgButton';
+    chgButton.textContent = '✏';
+
+    card.appendChild(chgButton);
     card.appendChild(rmButton);
     card.appendChild(contentDiv);
 
+    chgButton.addEventListener('click', editNote);
     document.body.appendChild(card);
+    cardAnim(0, 1);
+}
+
+function changedNote(stuff) {
+    let card = document.createElement('div');
+    card.className = 'card';
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.innerHTML = stuff;
+    //contentDiv.innerHTML = safeContent.textContent.replace(/\n/g, '<br>');
+
+    const rmButton = document.createElement('button');
+    rmButton.className = 'rmButton';
+    rmButton.textContent = 'x';
+
+    /*
+    */
+    const chgButton = document.createElement('button');
+    chgButton.className = 'chgButton';
+    chgButton.textContent = '✏';
+
+
+    card.appendChild(chgButton);
+    card.appendChild(rmButton);
+    card.appendChild(contentDiv);
+
+    chgButton.addEventListener('click', editNote);
+    document.body.appendChild(card);
+    //card.remove.closest('.card');
     cardAnim(0, 1);
 }
 
@@ -94,17 +122,18 @@ function impNote(noteText) {
     rmButton.className = 'rmButton';
     rmButton.textContent = 'x';
     /*
-    const chButton = document.createElement('button');
-    chButton.className = 'chButton';
-    chButton.textContent = '✏';
-
-    card.appendChild(chButton);
     */
+    const chgButton = document.createElement('button');
+    chgButton.className = 'chgButton';
+    chgButton.textContent = '✏';
+
+    card.appendChild(chgButton);
     
     card.appendChild(rmButton);
     card.appendChild(contentDiv);
 
     cards.appendChild(card);
+    chgButton.addEventListener('click', editNote);
 }
 
 function expNote() {
@@ -120,33 +149,48 @@ function expNote() {
     saveAs(blob, "export.json");
 }
 
-/*
-function editNote(button) {
-    if (isEditMode) {
-        alert('Завершите редактирование текущей строки перед редактированием другой.');
+const chgButton = document.querySelector('.chgButton')
+
+function editNote() {
+    if (!chgButton) {
+        console.error('Кнопка с классом .chgButton не найдена');
         return;
     }
 
-    isEditMode = true;
+    let eDiag = document.createElement('dialog');
+    eDiag.className = 'editDiag';
 
-    const ced = button.closest('card');
-    ced.dataset.originalHtml = row.innerHTML;
+    eDiag.innerHTML = `
+        <h3>Редактирование заметки</h3>
+        <textarea id="editText" placeholder="Введите текст заметки"></textarea>
+        <div class="dialog-buttons">
+            <button type="button" id="saveBtn">Сохранить</button>
+            <button type="button" id="cancelBtn">Отмена</button>
+        </div>
+    `;
 
-    const originalValues = ced.textContent;
+    document.body.appendChild(eDiag);
 
-    ced.innerHTML = `
-        <button class="rmButton">x</button>
-                <button class="chButton">✏</button>
-                ${data.notes.text}
-                <button type="button" onclick="saveEdit(this)">Сохранить</button>
-                <button type="button" onclick="cancelEdit(this)">Отмена</button>
-                `;
+    eDiag.showModal();
+
+    const saveBtn = eDiag.querySelector('#saveBtn');
+    const cancelBtn = eDiag.querySelector('#cancelBtn');
+
+    saveBtn.addEventListener('click', () => {
+        //console.log('Заметка сохранена:', document.getElementById('editText').value);
+        changedNote(document.getElementById('editText').value);
+        eDiag.close();
+        document.body.removeChild(eDiag);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        eDiag.close();
+        document.body.removeChild(eDiag);
+    });
 }
-*/
 
 addButton.addEventListener('click', () => { addNote(); })
 expButton.addEventListener('click', () => { expNote(); })
-//chgButton.addEventListener('click', () => { editNote(this); })
 impButton.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {

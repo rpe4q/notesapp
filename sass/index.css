@@ -1,13 +1,13 @@
 @import url("../fonts/fonts.css");
-.rmButton, .chButton, .card, body .inpt #text, dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
+.rmButton, .chgButton, .card, body .inpt #text, dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
   transition: ease-out 192ms;
 }
-.rmButton:hover, .chButton:hover, .card:hover, body .inpt #text:hover, dialog .oB .okBtn:hover, body .inpt .addBtn #expButton:hover, body .inpt .addBtn .file-input:hover, body .inpt .addBtn #addButton:hover {
+.rmButton:hover, .chgButton:hover, .card:hover, body .inpt #text:hover, dialog .oB .okBtn:hover, body .inpt .addBtn #expButton:hover, body .inpt .addBtn .file-input:hover, body .inpt .addBtn #addButton:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
   transition: ease-in 192ms;
 }
 
-.rmButton:active, .chButton:active, body .inpt #text:active, dialog .oB .okBtn:active, body .inpt .addBtn #expButton:active, body .inpt .addBtn .file-input:active, body .inpt .addBtn #addButton:active {
+.rmButton:active, .chgButton:active, body .inpt #text:active, dialog .oB .okBtn:active, body .inpt .addBtn #expButton:active, body .inpt .addBtn .file-input:active, body .inpt .addBtn #addButton:active {
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
   transition: ease-in 192ms;
 }
@@ -93,7 +93,7 @@ body .inpt .addBtn #expButton {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2509803922);
 }
 
-.rmButton, .chButton {
+.rmButton, .chgButton {
   position: absolute;
   display: block;
   align-self: end;
@@ -110,7 +110,7 @@ body .inpt .addBtn #expButton {
   color: white;
 }
 
-.chButton {
+.chgButton {
   margin-right: 2em;
   padding: 2.75px 5.5px;
   background: linear-gradient(cornflowerblue, blue);

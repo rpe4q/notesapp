@@ -10,6 +10,7 @@
 ### Tools
 - [VS Code](https://code.visualstudio.com)
 - [Alice AI](https://a.ya.ru)
+- [Perplexity](https://perplexity.ai)
 
 ### Notes
 for debugging you need open with Live/Five Server

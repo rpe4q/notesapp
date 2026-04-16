@@ -15,18 +15,25 @@
             how to use it?
         </p>
         <dialog id="htDialog">
-            you can write something as usual, 
-            but for enhanced functionality you need this flags<br>
-            <br>
-            <code id="cd">h1</code> - title<br>
-            <code id="cd">br</code> - next row<br>
-            <br>
-            and these flags should be in these brackets like these: <code id="cd"><></code>
-            <br>
-            for more info you an find in <a href="https://w3schools.com/html" 
-                target="_blank" rel="noopener">
-                this guide
-            </a>
+            <p>
+                you can write something as usual, 
+                but for enhanced functionality you need these flags:
+            </p>
+            <p>
+                <code id="cd">h1</code> - title<br>
+                <code id="cd">br</code> - next row<br>
+            </p>
+            <p>
+                and these flags should be in these brackets like these: <code id="cd"><></code>
+            </p>
+            <p>
+                for more info you an find in <a href="https://w3schools.com/html" 
+                    target="_blank" rel="noopener">
+                    this guide</a>
+            </p>
+            <p>
+            and yea, it also supports iframes, since textarea in here can output HTML by his design
+            </p>
             <p class="oB">
                 <button class="okBtn" onclick="window.htDialog.close()">
                     OK
@@ -37,11 +44,18 @@
             <textarea id="text" placeholder="any thoughts?" cols="40" rows="3">
             </textarea>
             <p class="addBtn">
-                <button id="addButton">Add</button>
-                <button id="addButton" name="addPl">Add Place</button>
-                <input type="file" accept=".json"
-                    id="impButton" class="file-input">
-                <button id="expButton">Export</button>
+                <p class="addBtn">
+                    <button id="addButton">Add</button>
+                    <button id="addButton" name="addPl">Add Place</button>
+                    <button id="addButton" name="addImg">Add Image</button>
+                    <button id="addButton" name="addVid">Add Video</button>
+                </p>
+                <span class="addBtn">
+                    <button id="addButton" name="addAud">Add Audio</button>
+                    <input type="file" accept=".json"
+                        id="impButton" class="file-input">
+                    <button id="expButton">Export</button>
+                </span>
             </p>
         </div>
         <div class="cards"></div>

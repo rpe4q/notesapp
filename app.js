@@ -10,6 +10,8 @@ const addIgBtn = document.querySelector('[name="addImg"]')
 const addVdBtn = document.querySelector('[name="addVid"]')
 const addAuBtn = document.querySelector('[name="addAud"]')
 const txtContent = document.querySelector('#text')
+const loginForm = document.forms[0];
+let eValid = '';
 const STORAGE_KEY = 'notes';
 var notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
@@ -99,6 +101,8 @@ function cardAnim(_i, _o) {
         }
     );
 }
+
+
 
 function addNote() {
     const html = txtContent.value.trim();
@@ -307,12 +311,16 @@ function addImageFx() {
     const pCancelBtn = eDiag.querySelector('#pCancelBtn');
 
     pOkBtn.addEventListener('click', () => {
-        txtContent.value += `<img src="${imgSrc.value}" 
-                width="${fwP.value}" height="${fhP.value}">`
+        const src = imgSrc.value.trim() !== ''
+            ? imgSrc.value.trim()
+            : 'img/default.png';
+
+        txtContent.value += `<img src="${src}" 
+        width="${fwP.value}" height="${fhP.value}">`
         eDiag.close();
         eDiag.remove();
     });
-
+    
     pCancelBtn.addEventListener('click', () => {
         eDiag.close();
         eDiag.remove();
@@ -376,9 +384,23 @@ function addVideoFx() {
     const pCancelBtn = eDiag.querySelector('#pCancelBtn');
 
     pOkBtn.addEventListener('click', () => {
+        const src = vidSrc.value.trim() !== ''
+            ? vidSrc.value.trim()
+            : 'defaultmedia/default.mp4';
+        const type = vidType.value.trim() !== ''
+            ? vidType.value.trim()
+            : 'mp4';
+        const wDims = {
+            width: fwP.value.trim() !== ''
+                ? fwP.value.trim()
+                : 180,
+            height: fhP.value.trim() !== ''
+                ? fhP.value.trim()
+                : 320,
+        }
         txtContent.value += `<video controls name="media" 
-            width="${fwP.value}" height="${fhP.value}">
-            <source src="${vidSrc.value}" type="video/${vidType.value}">
+            width="${wDims.width}" height="${wDims.height}">
+            <source src="${src}" type="video/${type}">
         </video>`
         eDiag.close();
         eDiag.remove();
@@ -425,7 +447,10 @@ function addAudioFx() {
     const pCancelBtn = eDiag.querySelector('#pCancelBtn');
 
     pOkBtn.addEventListener('click', () => {
-        txtContent.value += `<audio controls src="${auSrc.value}"></audio>`
+        const src = auSrc.value.trim() !== ''
+            ? auSrc.value.trim()
+            : 'defaultmedia/default.mp3';
+        txtContent.value += `<audio controls src="${src}"></audio>`
         eDiag.close();
         eDiag.remove();
     });

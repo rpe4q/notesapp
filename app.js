@@ -6,6 +6,9 @@ const rmButton = document.querySelector('.rmButton')
 const impButton = document.querySelector('#impButton')
 const expButton = document.querySelector('#expButton')
 const addPlBtn = document.querySelector('[name="addPl"]')
+const addIgBtn = document.querySelector('[name="addImg"]')
+const addVdBtn = document.querySelector('[name="addVid"]')
+const addAuBtn = document.querySelector('[name="addAud"]')
 const txtContent = document.querySelector('#text')
 
 async function loadGreeting() {
@@ -140,6 +143,8 @@ function impNote(noteText) {
     chgButton.addEventListener('click', editNote);
 }
 
+//https://www.perplexity.ai/search/a-kak-mne-sdelat-chtob-mozhno-H35mmuQwQamxkipnGvFrlQ
+
 function expNote() {
     const noteContent = txtContent.value;
     if (!noteContent) return;
@@ -248,8 +253,187 @@ function addPlaceFx() {
     });
 }
 
+function addImageFx() {
+    let eDiag = document.createElement('dialog');
+    eDiag.className = 'editDiag';
+    eDiag.innerHTML = `
+        <form>
+            <h3>Добавление картинки</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Ссылка картинки:
+                        </td>
+                        <td>
+                            <input type="text" id="imgField"
+                                placeholder="*.jpg/png/webp/avif...">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fwField"
+                                placeholder="Ширина виджета">
+                        </td>
+                        <td>
+                            <input type="text" id="fhField"
+                                placeholder="Длина виджета">
+                        </td>
+                    </tr>
+                <table>
+            <p>
+                <div class="dialog-buttons">
+                    <button type="button" id="pOkBtn">ОК</button>
+                    <button type="button" id="pCancelBtn">Отмена</button>
+                </div>
+            </p>
+        </form>
+    `;
+
+    document.body.appendChild(eDiag);
+    eDiag.showModal();
+
+    const imgSrc = document.querySelector('#imgField')
+    const fwP = document.querySelector('#fwField')
+    const fhP = document.querySelector('#fhField')
+
+    const pOkBtn = eDiag.querySelector('#pOkBtn');
+    const pCancelBtn = eDiag.querySelector('#pCancelBtn');
+
+    pOkBtn.addEventListener('click', () => {
+        txtContent.value += `<img src="${imgSrc.value}" 
+                width="${fwP.value}" height="${fhP.value}">`
+        eDiag.close();
+        eDiag.remove();
+    });
+
+    pCancelBtn.addEventListener('click', () => {
+        eDiag.close();
+        eDiag.remove();
+    });
+}
+
+function addVideoFx() {
+    let eDiag = document.createElement('dialog');
+    eDiag.className = 'editDiag';
+    eDiag.innerHTML = `
+        <form>
+            <h3>Добавление видео</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Ссылка видео:
+                        </td>
+                        <td>
+                            <input type="text" id="vidField"
+                                placeholder="*.mp4/webm...">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Тип видео:
+                        </td>
+                        <td>
+                            <input type="text" id="vTypeField"
+                                placeholder="video/* (mp4/webm...)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fwField"
+                                placeholder="Ширина виджета">
+                        </td>
+                        <td>
+                            <input type="text" id="fhField"
+                                placeholder="Длина виджета">
+                        </td>
+                    </tr>
+                <table>
+            <p>
+                <div class="dialog-buttons">
+                    <button type="button" id="pOkBtn">ОК</button>
+                    <button type="button" id="pCancelBtn">Отмена</button>
+                </div>
+            </p>
+        </form>
+    `;
+
+    document.body.appendChild(eDiag);
+    eDiag.showModal();
+
+    const vidSrc = document.querySelector('#vidField')
+    const vidType = document.querySelector('#vTypeField')
+    const fwP = document.querySelector('#fwField')
+    const fhP = document.querySelector('#fhField')
+
+    const pOkBtn = eDiag.querySelector('#pOkBtn');
+    const pCancelBtn = eDiag.querySelector('#pCancelBtn');
+
+    pOkBtn.addEventListener('click', () => {
+        txtContent.value += `<video controls name="media" 
+            width="${fwP.value}" height="${fhP.value}">
+            <source src="${vidSrc.value}" type="video/${vidType.value}">
+        </video>`
+        eDiag.close();
+        eDiag.remove();
+    });
+
+    pCancelBtn.addEventListener('click', () => {
+        eDiag.close();
+        eDiag.remove();
+    });
+}
+
+function addAudioFx() {
+    let eDiag = document.createElement('dialog');
+    eDiag.className = 'editDiag';
+    eDiag.innerHTML = `
+        <form>
+            <h3>Добавление аудио</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Ссылка аудио:
+                        </td>
+                        <td>
+                            <input type="text" id="audField"
+                                placeholder="*.mp3/ogg/m4a/aac...">
+                        </td>
+                    </tr>
+                <table>
+            <p>
+                <div class="dialog-buttons">
+                    <button type="button" id="pOkBtn">ОК</button>
+                    <button type="button" id="pCancelBtn">Отмена</button>
+                </div>
+            </p>
+        </form>
+    `;
+
+    document.body.appendChild(eDiag);
+    eDiag.showModal();
+
+    const auSrc = document.querySelector('#audField')
+
+    const pOkBtn = eDiag.querySelector('#pOkBtn');
+    const pCancelBtn = eDiag.querySelector('#pCancelBtn');
+
+    pOkBtn.addEventListener('click', () => {
+        txtContent.value += `<audio controls src="${auSrc.value}"></audio>`
+        eDiag.close();
+        eDiag.remove();
+    });
+
+    pCancelBtn.addEventListener('click', () => {
+        eDiag.close();
+        eDiag.remove();
+    });
+}
+
 addButton.addEventListener('click', () => { addNote(); })
 addPlBtn.addEventListener('click', addPlaceFx)
+addIgBtn.addEventListener('click', addImageFx)
+addVdBtn.addEventListener('click', addVideoFx)
+addAuBtn.addEventListener('click', addAudioFx)
 expButton.addEventListener('click', () => { expNote(); })
 impButton.addEventListener('change', (event) => {
     const file = event.target.files[0];

@@ -58,13 +58,13 @@ body
             @extend %pressanim
         .addBtn
             justify-content: center
-            #addButton, #impButton, #expButton
+            #addButton, #impButton, .file-input, #expButton, 
+            #addPlButton, #addIgButton, #addVdButton, #addAuButton
                 @include spacing(.25em)
-            #addButton
                 @extend %btnstyle
+            #addButton
                 @include colors(linear-gradient(#00bb00, green), white)
             .file-input
-                @extend %btnstyle
                 @include colors(linear-gradient(cornflowerblue, blue), transparent)
                 &::file-selector-button
                     background: transparent
@@ -81,8 +81,15 @@ body
                     content: 'Import'
                     color: white
             #expButton
-                @extend %btnstyle
                 @include colors(linear-gradient(yellow, orange), black)
+            #addPlButton
+                @include colors(linear-gradient(lightgreen, yellowgreen), black)
+            #addIgButton
+                @include colors(linear-gradient(cyan, cornflowerblue), black)
+            #addVdButton
+                @include colors(linear-gradient(pink, violet), black)
+            #addAuButton
+                @include colors(linear-gradient(orange, brown), white)
 
 .card
     background: white

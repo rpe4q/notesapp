@@ -1,18 +1,22 @@
 @import url("../fonts/fonts.css");
-.rmButton, .chgButton, .card, body .inpt #text, dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
+.rmButton, .chgButton, .card, body .inpt #text, dialog .oB .okBtn, body .inpt .addBtn #addButton, body .inpt .addBtn #impButton, body .inpt .addBtn .file-input, body .inpt .addBtn #expButton,
+body .inpt .addBtn #addPlButton, body .inpt .addBtn #addIgButton, body .inpt .addBtn #addVdButton, body .inpt .addBtn #addAuButton {
   transition: ease-out 192ms;
 }
-.rmButton:hover, .chgButton:hover, .card:hover, body .inpt #text:hover, dialog .oB .okBtn:hover, body .inpt .addBtn #expButton:hover, body .inpt .addBtn .file-input:hover, body .inpt .addBtn #addButton:hover {
+.rmButton:hover, .chgButton:hover, .card:hover, body .inpt #text:hover, dialog .oB .okBtn:hover, body .inpt .addBtn #addButton:hover, body .inpt .addBtn #impButton:hover, body .inpt .addBtn .file-input:hover, body .inpt .addBtn #expButton:hover,
+body .inpt .addBtn #addPlButton:hover, body .inpt .addBtn #addIgButton:hover, body .inpt .addBtn #addVdButton:hover, body .inpt .addBtn #addAuButton:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
   transition: ease-in 192ms;
 }
 
-.rmButton:active, .chgButton:active, body .inpt #text:active, dialog .oB .okBtn:active, body .inpt .addBtn #expButton:active, body .inpt .addBtn .file-input:active, body .inpt .addBtn #addButton:active {
+.rmButton:active, .chgButton:active, body .inpt #text:active, dialog .oB .okBtn:active, body .inpt .addBtn #addButton:active, body .inpt .addBtn #impButton:active, body .inpt .addBtn .file-input:active, body .inpt .addBtn #expButton:active,
+body .inpt .addBtn #addPlButton:active, body .inpt .addBtn #addIgButton:active, body .inpt .addBtn #addVdButton:active, body .inpt .addBtn #addAuButton:active {
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2509803922);
   transition: ease-in 192ms;
 }
 
-dialog .oB .okBtn, body .inpt .addBtn #expButton, body .inpt .addBtn .file-input, body .inpt .addBtn #addButton {
+dialog .oB .okBtn, body .inpt .addBtn #addButton, body .inpt .addBtn #impButton, body .inpt .addBtn .file-input, body .inpt .addBtn #expButton,
+body .inpt .addBtn #addPlButton, body .inpt .addBtn #addIgButton, body .inpt .addBtn #addVdButton, body .inpt .addBtn #addAuButton {
   width: 96px;
   height: 32px;
   font-size: 16px;
@@ -48,7 +52,8 @@ body .inpt {
 body .inpt .addBtn {
   justify-content: center;
 }
-body .inpt .addBtn #addButton, body .inpt .addBtn #impButton, body .inpt .addBtn #expButton {
+body .inpt .addBtn #addButton, body .inpt .addBtn #impButton, body .inpt .addBtn .file-input, body .inpt .addBtn #expButton,
+body .inpt .addBtn #addPlButton, body .inpt .addBtn #addIgButton, body .inpt .addBtn #addVdButton, body .inpt .addBtn #addAuButton {
   margin-right: 0.25em;
   margin-left: 0.25em;
 }
@@ -79,6 +84,22 @@ body .inpt .addBtn .file-input::before {
 body .inpt .addBtn #expButton {
   background: linear-gradient(yellow, orange);
   color: black;
+}
+body .inpt .addBtn #addPlButton {
+  background: linear-gradient(lightgreen, yellowgreen);
+  color: black;
+}
+body .inpt .addBtn #addIgButton {
+  background: linear-gradient(cyan, cornflowerblue);
+  color: black;
+}
+body .inpt .addBtn #addVdButton {
+  background: linear-gradient(pink, violet);
+  color: black;
+}
+body .inpt .addBtn #addAuButton {
+  background: linear-gradient(orange, brown);
+  color: white;
 }
 
 .card {

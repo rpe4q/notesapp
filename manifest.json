@@ -17,12 +17,13 @@
             "src": "img/sc_mobile.jpg",
             "type": "image/jpg",
             "sizes": "1280x2772",
-            "form_factor": "narrow"
+            "platform": "android"
         },
         {
             "src": "img/sc_vert.jpg",
             "type": "image/jpg",
-            "sizes": "575x876"
+            "sizes": "575x876",
+            "form_factor": "narrow"
         },
         {
             "src": "img/sc_pc.png",

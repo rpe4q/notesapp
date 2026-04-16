@@ -101,30 +101,6 @@ function cardAnim(_i, _o) {
 }
 
 function addNote() {
-    /*
-    let card = document.createElement('div');
-    card.className = 'card';
-
-    const safeContent = document.createTextNode(txtContent.value);
-    const contentDiv = document.createElement('div');
-    contentDiv.innerHTML = safeContent.textContent;
-    //contentDiv.innerHTML = safeContent.textContent.replace(/\n/g, '<br>');
-
-    const rmButton = document.createElement('button');
-    rmButton.className = 'rmButton';
-    rmButton.textContent = 'x';
-    
-    const chgButton = document.createElement('button');
-    chgButton.className = 'chgButton';
-    chgButton.textContent = '✏';
-    
-    card.appendChild(chgButton);
-    card.appendChild(rmButton);
-    card.appendChild(contentDiv);
-    
-    chgButton.addEventListener('click', editNote);
-    document.body.appendChild(card);
-    */
     const html = txtContent.value.trim();
     if (!html) return;
 
@@ -134,6 +110,32 @@ function addNote() {
     txtContent.value = '';
 
     cardAnim(0, 1);
+
+    // thats how look before localstorage
+    /*
+        let card = document.createElement('div');
+        card.className = 'card';
+
+        const safeContent = document.createTextNode(txtContent.value);
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = safeContent.textContent;
+        //contentDiv.innerHTML = safeContent.textContent.replace(/\n/g, '<br>');
+
+        const rmButton = document.createElement('button');
+        rmButton.className = 'rmButton';
+        rmButton.textContent = 'x';
+        
+        const chgButton = document.createElement('button');
+        chgButton.className = 'chgButton';
+        chgButton.textContent = '✏';
+        
+        card.appendChild(chgButton);
+        card.appendChild(rmButton);
+        card.appendChild(contentDiv);
+        
+        chgButton.addEventListener('click', editNote);
+        document.body.appendChild(card);
+    */
 }
 
 function changedNote(stuff, cardToRemove = null) {
@@ -188,8 +190,6 @@ function impNote(noteText) {
     cards.appendChild(card);
     chgButton.addEventListener('click', editNote);
 }
-
-//https://www.perplexity.ai/search/a-kak-mne-sdelat-chtob-mozhno-H35mmuQwQamxkipnGvFrlQ
 
 function expNote() {
     const noteContent = txtContent.value;

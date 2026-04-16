@@ -2,7 +2,6 @@
     "name": "Notes",
     "short_name": "Notes",
     "display": "standalone",
-    "orientation": "portrait",
     "start_url": "./",
     "background_color": "#ffffff",
     "theme_color": "#ffd800",
@@ -16,9 +15,14 @@
     "screenshots": [
         {
             "src": "img/sc_mobile.jpg",
-            "type": "image/png",
-            "sizes": "575x876",
+            "type": "image/jpg",
+            "sizes": "1280x2772",
             "form_factor": "narrow"
+        },
+        {
+            "src": "img/sc_vert.jpg",
+            "type": "image/jpg",
+            "sizes": "575x876"
         },
         {
             "src": "img/sc_pc.png",

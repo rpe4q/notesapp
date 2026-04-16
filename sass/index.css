@@ -125,6 +125,7 @@ body .inpt .addBtn #addAuButton {
   font-size: large;
   font-weight: bold;
   cursor: pointer;
+  z-index: 2;
 }
 
 .rmButton {

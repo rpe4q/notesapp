@@ -10,6 +10,12 @@ const addIgBtn = document.querySelector('[name="addImg"]')
 const addVdBtn = document.querySelector('[name="addVid"]')
 const addAuBtn = document.querySelector('[name="addAud"]')
 const txtContent = document.querySelector('#text')
+const STORAGE_KEY = 'notes';
+var notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function saveNotes() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+}
 
 async function loadGreeting() {
     try {
@@ -45,9 +51,39 @@ async function loadGreeting() {
     }
 } await loadGreeting();
 
-// async function loadNotes(){
-    
-// } await loadNotes();
+function renderNotes() {
+    cards.innerHTML = '';
+    notes.forEach((note, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = note.html;
+
+        const rmButton = document.createElement('button');
+        rmButton.className = 'rmButton';
+        rmButton.textContent = 'x';
+
+        const chgButton = document.createElement('button');
+        chgButton.className = 'chgButton';
+        chgButton.textContent = '✏';
+
+        chgButton.addEventListener('click', () => editNote(index));
+        rmButton.addEventListener('click', () => {
+            notes.splice(index, 1);
+            saveNotes();
+            renderNotes();
+        });
+
+        card.append(chgButton, rmButton, contentDiv);
+        cards.appendChild(card);
+    });
+}
+
+async function loadNotes(){
+    notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    renderNotes();    
+} await loadNotes();
 
 function cardAnim(_i, _o) {
     const cardAnime = document.querySelector(".card");
@@ -65,6 +101,7 @@ function cardAnim(_i, _o) {
 }
 
 function addNote() {
+    /*
     let card = document.createElement('div');
     card.className = 'card';
 
@@ -87,6 +124,15 @@ function addNote() {
     
     chgButton.addEventListener('click', editNote);
     document.body.appendChild(card);
+    */
+    const html = txtContent.value.trim();
+    if (!html) return;
+
+    notes.push({ html });
+    saveNotes();
+    renderNotes();
+    txtContent.value = '';
+
     cardAnim(0, 1);
 }
 

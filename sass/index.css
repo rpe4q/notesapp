@@ -60,6 +60,8 @@ body .inpt .addBtn #addPlButton, body .inpt .addBtn #addIgButton, body .inpt .ad
 body .inpt .addBtn #addButton {
   background: linear-gradient(#00bb00, green);
   color: white;
+  width: 48px;
+  height: 32px;
 }
 body .inpt .addBtn .file-input {
   background: linear-gradient(cornflowerblue, blue);

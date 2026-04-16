@@ -44,7 +44,6 @@ body .apptitle {
   font-family: "Lato";
   font-size: 56px;
   font-weight: 900;
-  width: 90%;
 }
 body .inpt {
   flex-direction: column;

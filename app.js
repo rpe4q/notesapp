@@ -138,57 +138,15 @@ function addNote() {
     */
 }
 
-function changedNote(stuff, cardToRemove = null) {
-    if (cardToRemove) {
-        cardToRemove.remove();
-    }
-    let card = document.createElement('div');
-    card.className = 'card';
-    
-    const contentDiv = document.createElement('div');
-    contentDiv.innerHTML = stuff;
-    //contentDiv.innerHTML = safeContent.textContent.replace(/\n/g, '<br>');
-
-    const rmButton = document.createElement('button');
-    rmButton.className = 'rmButton';
-    rmButton.textContent = 'x';
-    
-    const chgButton = document.createElement('button');
-    chgButton.className = 'chgButton';
-    chgButton.textContent = '✏';
-    
-    card.appendChild(chgButton);
-    card.appendChild(rmButton);
-    card.appendChild(contentDiv);
-    
-    chgButton.addEventListener('click', editNote(card));
-    document.body.appendChild(card);
-    cardAnim(0, 1);
-}
-
 function impNote(noteText) {
-    let card = document.createElement('div');
-    card.className = 'card';
+    const html = noteText.trim();
+    if (!html) return;
 
-    const contentDiv = document.createElement('div');
-    contentDiv.innerHTML = noteText;
-    //contentDiv.innerHTML = noteText.replace(/\n/g, '<br>');
-
-    const rmButton = document.createElement('button');
-    rmButton.className = 'rmButton';
-    rmButton.textContent = 'x';
-    
-    const chgButton = document.createElement('button');
-    chgButton.className = 'chgButton';
-    chgButton.textContent = '✏';
-
-    card.appendChild(chgButton);
-    
-    card.appendChild(rmButton);
-    card.appendChild(contentDiv);
-
-    cards.appendChild(card);
-    chgButton.addEventListener('click', editNote);
+    notes.push({ html });
+    saveNotes();
+    renderNotes();
+    noteText = '';
+    cardAnim(0, 1);
 }
 
 function expNote() {
@@ -196,7 +154,7 @@ function expNote() {
     if (!noteContent) return;
     const data = {
         notes: {
-            text: noteContent
+            text: notes
         }
     };
     const jsonString = JSON.stringify(data, null, 2);
@@ -204,7 +162,7 @@ function expNote() {
     saveAs(blob, "export.json");
 }
 
-function editNote(event) {
+function editNote(index) {
     let eDiag = document.createElement('dialog');
     eDiag.className = 'editDiag';
     eDiag.innerHTML = `
@@ -220,12 +178,15 @@ function editNote(event) {
     
     eDiag.showModal();
     
+    eDiag.querySelector('#editText').value = notes[index].html;
+
     const saveBtn = eDiag.querySelector('#saveBtn');
     const cancelBtn = eDiag.querySelector('#cancelBtn');
     
     saveBtn.addEventListener('click', () => {
-        changedNote(document.getElementById('editText').value,
-            event.target.closest('.card'));
+        notes[index].html = eDiag.querySelector('#editText').value;
+        saveNotes();
+        renderNotes();
         eDiag.close();
         eDiag.remove();
     });
@@ -488,10 +449,18 @@ impButton.addEventListener('change', (event) => {
         reader.onload = function (e) {
             try {
                 const data = JSON.parse(e.target.result);
-                impNote(data.notes.text);
+                if (data.notes && Array.isArray(data.notes.text)) {
+                    data.notes.text.forEach(noteObj => {
+                        if (noteObj.html) {
+                            impNote(noteObj.html);
+                        }
+                    });
+                } else {
+                    impNote("Неверная структура JSON");
+                }
             } catch (error) {
                 console.error("Error parsing JSON:", error);
-                impNote("Error parsing JSON, see console for details");
+                impNote("Ошибка парсинга JSON, смотрите консоль");
             }
         };
         reader.readAsText(file);
